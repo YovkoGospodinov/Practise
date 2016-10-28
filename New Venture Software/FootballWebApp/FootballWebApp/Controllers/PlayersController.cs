@@ -8,24 +8,20 @@ using ManagerDataAccess;
 
 namespace FootballWebApp.Controllers
 {
-    public class PlayersController : ApiController
+    public class PlayersController : BaseController
     {
-        FootBall_ManagerEntities entities = new FootBall_ManagerEntities();
-
-        
+        public PlayersController()
+            : base() { }
+                
         public IList<Player> Get()
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
-            var players = entities.Players.ToList();
+            var players = base.entities.Players.ToList();
             return players;
         }
 
         public HttpResponseMessage Get(int id)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
-            var player = entities.Players.FirstOrDefault(p => p.Id == id);
+            var player = base.entities.Players.FirstOrDefault(p => p.Id == id);
 
             if (player != null)
             {
@@ -39,11 +35,9 @@ namespace FootballWebApp.Controllers
 
         public HttpResponseMessage Post([FromBody]Player player)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
             try
             {
-                entities.Players.Add(player);
+                base.entities.Players.Add(player);
 
                 entities.SaveChanges();
 
@@ -60,11 +54,9 @@ namespace FootballWebApp.Controllers
 
         public HttpResponseMessage Delete(int id)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
             try
             {
-                var playerToRemove = entities.Players.FirstOrDefault(p => p.Id == id);
+                var playerToRemove = base.entities.Players.FirstOrDefault(p => p.Id == id);
 
                 if (playerToRemove == null)
                 {
@@ -72,9 +64,9 @@ namespace FootballWebApp.Controllers
                 }
                 else
                 {
-                    entities.Players.Remove(playerToRemove);
+                    base.entities.Players.Remove(playerToRemove);
 
-                    entities.SaveChanges();
+                    base.entities.SaveChanges();
 
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
@@ -87,11 +79,9 @@ namespace FootballWebApp.Controllers
 
         public HttpResponseMessage Put(int id, [FromBody] Player player)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
             try
             {
-                var playerToUpdate = entities.Players.FirstOrDefault(p => p.Id == id);
+                var playerToUpdate = base.entities.Players.FirstOrDefault(p => p.Id == id);
 
                 if (playerToUpdate == null)
                 {

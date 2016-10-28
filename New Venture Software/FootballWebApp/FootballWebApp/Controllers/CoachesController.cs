@@ -5,25 +5,24 @@ using System.Net;
 using System.Web.Http;
 using System.Net.Http;
 using ManagerDataAccess;
+using FootballWebApp.Interfaces;
 
 namespace FootballWebApp.Controllers
 {
-    public class CoachesController : ApiController
+    public class CoachesController : BaseController
     {
-        FootBall_ManagerEntities entities = new FootBall_ManagerEntities();
-        public IList<Coach> Get()
-        {
-            entities.Configuration.ProxyCreationEnabled = false;
+        public CoachesController() 
+            : base() { }
 
-            var coaches = entities.Coaches.ToList();
+        public IList<Coach> GetAll()
+        {
+            var coaches = base.entities.Coaches.ToList();
             return coaches;
         }
 
         public HttpResponseMessage Get(int id)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
-            var coach = entities.Players.FirstOrDefault(c => c.Id == id);
+            var coach = base.entities.Coaches.FirstOrDefault(c => c.Id == id);
 
             if (coach != null)
             {
@@ -37,13 +36,11 @@ namespace FootballWebApp.Controllers
 
         public HttpResponseMessage Post([FromBody]Coach coach)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
             try
             {
-                entities.Coaches.Add(coach);
+                base.entities.Coaches.Add(coach);
 
-                entities.SaveChanges();
+                base.entities.SaveChanges();
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, coach);
                 message.Headers.Location = new Uri(Request.RequestUri + coach.Name);
@@ -58,11 +55,9 @@ namespace FootballWebApp.Controllers
 
         public HttpResponseMessage Delete(int id)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
             try
             {
-                var coachToRemove = entities.Coaches.FirstOrDefault(c => c.Id == id);
+                var coachToRemove = base.entities.Coaches.FirstOrDefault(c => c.Id == id);
 
                 if (coachToRemove == null)
                 {
@@ -70,9 +65,9 @@ namespace FootballWebApp.Controllers
                 }
                 else
                 {
-                    entities.Coaches.Remove(coachToRemove);
+                    base.entities.Coaches.Remove(coachToRemove);
 
-                    entities.SaveChanges();
+                    base.entities.SaveChanges();
 
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
@@ -85,8 +80,6 @@ namespace FootballWebApp.Controllers
 
         public HttpResponseMessage Put(int id, [FromBody] Coach coach)
         {
-            entities.Configuration.ProxyCreationEnabled = false;
-
             try
             {
                 var coachToUpdate = entities.Coaches.FirstOrDefault(c => c.Id == id);
@@ -99,7 +92,7 @@ namespace FootballWebApp.Controllers
                 {
                     coachToUpdate.Name = coach.Name;
 
-                    entities.SaveChanges();
+                    base.entities.SaveChanges();
 
                     return Request.CreateResponse(HttpStatusCode.OK, coachToUpdate);
                 }
