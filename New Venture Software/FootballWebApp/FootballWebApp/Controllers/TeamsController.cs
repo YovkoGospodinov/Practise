@@ -5,14 +5,15 @@ using System.Net;
 using System.Web.Http;
 using System.Net.Http;
 using ManagerDataAccess;
+using FootballWebApp.Interfaces;
 
 namespace FootballWebApp.Controllers
 {
-    public class TeamsController : BaseController
+    public class TeamsController : BaseController, IController<Team>
     {
         public TeamsController()
             : base() { }
-        public IList<Team> Get()
+        public IList<Team> GetAll()
         {
             var teams = base.entities.Teams.ToList();
             return teams;

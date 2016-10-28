@@ -9,7 +9,7 @@ using FootballWebApp.Interfaces;
 
 namespace FootballWebApp.Controllers
 {
-    public class CoachesController : BaseController
+    public class CoachesController : BaseController, IController<Coach>
     {
         public CoachesController() 
             : base() { }
