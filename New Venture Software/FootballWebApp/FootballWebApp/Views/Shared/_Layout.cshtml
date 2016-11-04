@@ -3,15 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="styles/kendo.default.min.css" />
-    <link rel="stylesheet" href="styles/kendo.default.mobile.min.css" />
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/kendo.all.min.js"></script>
+    <title>FootBall Manager</title>
+    
+    @*Styles*@
+    <link href="~/Content/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo.silver.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*Scripts*@
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/kendo.web.min.js"></script>
+    <script src="~/Scripts/grid.loader.js"></script>
+    <script src="~/Scripts/pager.loader.js"></script>
+    <script src="~/Scripts/teams.loader.js"></script>
+    <script src="~/Scripts/players.loader.js"></script>
+    <script src="~/Scripts/coaches.loader.js"></script>
+    <script src="/Scripts/app.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,7 +33,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
                 </ul>
             </div>
         </div>
@@ -39,9 +44,5 @@
             <p>&copy; @DateTime.Now.Year - Football Manager Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

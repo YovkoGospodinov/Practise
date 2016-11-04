@@ -16,7 +16,8 @@ namespace FootballWebApp.Controllers
 
         public IList<Coach> GetAll()
         {
-            var coaches = base.entities.Coaches.ToList();
+            var coaches = base.entities.Coaches.Include("Team").ToList();
+
             return coaches;
         }
 

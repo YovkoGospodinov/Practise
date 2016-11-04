@@ -1,44 +1,32 @@
-﻿<div class="jumbotron">
+﻿<div id="head" class="jumbotron">
     <h1>Football Manager</h1>
     <p class="lead">Football Manager is a web application for football clubs, their players and managers around Europe.</p>
-    <p><a href="https://fantasy.premierleague.com/" class="btn btn-primary btn-lg">Start &raquo;</a></p>
+    @*<p><a href="https://fantasy.premierleague.com/" class="btn btn-primary btn-lg">Start &raquo;</a></p>*@
 </div>
-<div class="row">
+<div id="entries" class="row">
     <div class="col-md-4">
         <h2>Teams</h2>
         <p>
             Information about all Teams.
         </p>
-        <p><a class="btn btn-default" href="../api/Teams">View Teams &raquo;</a></p>
+        <p><a id="bTeams" class="btn btn-default" href="#">View Teams &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Players</h2>
         <p>
             Information about all Players.
         </p>
-        <p><a class="btn btn-default" href="../api/Players">View Players &raquo;</a></p>
+        <p><a id="bPlayers" class="btn btn-default" href="#">View Players &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Managers</h2>
         <p>
             Information about all Managers.
         </p>
-        <p><a class="btn btn-default" href="../api/Coaches">Learn more &raquo;</a></p>
+        <p><a id="bCoaches" class="btn btn-default" href="#">View Managers &raquo;</a></p>
     </div>
-    <div id="grid"></div>
-    <script>
-        var remoteDataSource = new kendo.data.DataSource({
-            transport: {
-                read: {
-                    url: "api/teams",
-                    dataType: "json",
-                    data: {
-                        q: function () {
-                            return $("#searchFor").val();
-                        }
-                    }
-                }
-            }
-        });
-    </script>
 </div>
+    <div id="content"></div>
+    <div id="grid"></div>
+    <div id="pager"></div>
+
