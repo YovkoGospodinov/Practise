@@ -7,7 +7,7 @@
                 },
                 update: {
                     url: url,
-                    dataType: "json"
+                    dataType: "jsonp"
                 },
                 destroy: {
                     url: url,
@@ -23,10 +23,17 @@
                     }
                 }
             },
+            batch: true,
+            pageSize: 5,
             shema: {
                 id: "Id"
-            },
-            pageSize: 5
+                ,
+                fields: {
+                    Id: { editable: false, nullable: true },
+                    Name: { validation: { required: true } },
+                    TeamId: { type: "number", validation: { required: true, min: 1} }
+                }
+            }
 	});
 
 	return dataSource;

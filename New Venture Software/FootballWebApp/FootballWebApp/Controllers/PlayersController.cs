@@ -16,6 +16,22 @@ namespace FootballWebApp.Controllers
                 
         public IList<Player> GetAll()
         {
+            //          var query = @"SELECT p.[Id]
+            //    ,p.[Name]
+            //    ,p.[BirthDate]
+            //    ,p.[Position]
+            //    ,t.[Name] AS [TeamId]
+            //    ,c.[Name] AS [CountryId]
+            //    ,p.[MonthlyWage]
+            //    ,t1.[Name] AS [PreviousTeadmId]
+            //FROM [FootBall Manager].[dbo].[Players] AS p
+            //Join Teams AS t
+            //ON p.TeamId = t.Id
+            //JOIN Teams AS t1
+            //ON p.PreviousTeadmId = t1.Id
+            //JOIN Countries AS c
+            //ON p.CountryId = c.Id";
+            //          var players = base.entities.Players.SqlQuery(query).ToList();
             var players = base.entities.Players.Include("Team").Include("Country").ToList();
 
             return players;

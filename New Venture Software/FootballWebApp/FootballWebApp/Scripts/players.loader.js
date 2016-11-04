@@ -9,7 +9,7 @@
         }, {
             field: "Position",
             title: "Position"
-        }, {
+        },{
             field: "Team.Name",
             title: "Team"
         }, {
