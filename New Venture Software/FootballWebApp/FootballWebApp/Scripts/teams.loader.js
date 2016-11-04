@@ -13,11 +13,8 @@
             field: "Country.Name",
             title: "Country"
         }, {
-            field: "League",
+            field: "League.Name",
             title: "League"
-        }, {
-            field: "Coaches",
-            title: "Manager"
         }],
         sortable: true,
         filterable: true,

@@ -18,7 +18,7 @@
         }, {
             field: "BirthDate",
             title: "Birth Date",
-            format: "{0: yyyy-MM-dd}"
+            template: "#= kendo.toString(kendo.parseDate(BirthDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #"
         }],
         sortable: true,
         filterable: true,
