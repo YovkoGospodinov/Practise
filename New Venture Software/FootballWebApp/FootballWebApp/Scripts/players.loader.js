@@ -28,12 +28,15 @@
             template: "#= kendo.toString(kendo.parseDate(BirthDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #",
             width: "120px"
         }, {
-            command: ["edit", "destroy"], title: "", width: "172px"
+            command: ["edit", "destroy"], title: "Action", width: "172px"
         }],
         sortable: true,
         filterable: true,
         scrollable: true,
-        editable: "inline"
+        editable: "inline",
+        save: function () {
+            this.refresh();
+        }
     });
 
     PagerLoader(dataSource);

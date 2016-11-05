@@ -37,7 +37,17 @@ namespace FootballWebApp.Controllers
         {
             try
             {
-                base.entities.Teams.Add(team);
+                int teamId = team.Id;
+                var teamToUpdate = base.entities.Teams.FirstOrDefault(t => t.Id == teamId);
+
+                if (teamToUpdate != null)
+                {
+                    base.entities.Entry(teamToUpdate).CurrentValues.SetValues(team);
+                }
+                else
+                {
+                    base.entities.Teams.Add(team);
+                }
 
                 base.entities.SaveChanges();
 

@@ -39,9 +39,19 @@ namespace FootballWebApp.Controllers
         {
             try
             {
-                base.entities.Players.Add(player);
+                int playerId = player.Id;
+                var playerToUpdate = base.entities.Players.FirstOrDefault(p => p.Id == playerId);
 
-                entities.SaveChanges();
+                if (playerToUpdate != null)
+                {
+                    base.entities.Entry(playerToUpdate).CurrentValues.SetValues(player);
+                }
+                else
+                {
+                    base.entities.Players.Add(player);
+                }
+
+                base.entities.SaveChanges();
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, player);
                 message.Headers.Location = new Uri(Request.RequestUri + player.Name);
