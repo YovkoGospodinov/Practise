@@ -9,12 +9,15 @@
         }, {
             field: "Position",
             title: "Position"
-        },{
+        }, {
+            field: "Team1.Name",
+            title: "Current Team",
+        }, {
             field: "Team.Name",
-            title: "Team"
+            title: "Previous Team",
         }, {
             field: "Country.Name",
-            title: "Birth Country"
+            title: "Birth Country",
         }, {
             field: "BirthDate",
             title: "Birth Date",

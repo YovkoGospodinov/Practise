@@ -32,7 +32,7 @@ namespace FootballWebApp.Controllers
             //JOIN Countries AS c
             //ON p.CountryId = c.Id";
             //          var players = base.entities.Players.SqlQuery(query).ToList();
-            var players = base.entities.Players.Include("Team").Include("Country").ToList();
+            var players = base.entities.Players.Include("Team").Include("Team1").Include("Country").ToList();
 
             return players;
         }
