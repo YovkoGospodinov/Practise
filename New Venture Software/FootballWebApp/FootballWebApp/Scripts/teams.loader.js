@@ -3,6 +3,7 @@
 
     $("#grid").kendoGrid({
         dataSource: dataSource,
+        toolbar: ["create"],
         columns: [{
             field: "Name",
             title: "Name"
@@ -15,11 +16,13 @@
         }, {
             field: "League.Name",
             title: "League"
+        }, {
+            command: ["edit", "destroy"], title: "", width: "172px"
         }],
         sortable: true,
         filterable: true,
-        editable: true,
-        scrollable: true
+        scrollable: true,
+        editable: "inline"
     });
 
     PagerLoader(dataSource);

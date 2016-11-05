@@ -20,6 +20,9 @@
         }, {
             command: ["edit", "destroy"], title: "", width: "172px"
         }],
+        sortable: true,
+        filterable: true,
+        scrollable: true,
         editable: "inline"
     });
 
