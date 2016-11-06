@@ -16,7 +16,7 @@ namespace FootballWebApp.Controllers
                 
         public IList<Player> Get()
         {
-            var players = base.entities.Players.Include("Team1").Include("Country").ToList();
+            var players = base.entities.Players.Include("Team1").Include("Team").Include("Country").ToList();
 
             return players;
         }

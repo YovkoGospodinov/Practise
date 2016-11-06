@@ -25,6 +25,7 @@
                     Name: { validation: { required: true } },
                     Position: { validation: { required: true } },
                     Team1: { defaultValue: { Team1: 1, CategoryName: "Arsenal F.C." } },
+                    Team: { defaultValue: { Team: 1, CategoryName: "Arsenal F.C." } },
                     Country: { defaultValue: { CountryId: 1, CategoryName: "England" } },
                     BirthDate :{ type: "date"}
                 }
