@@ -54,7 +54,7 @@ CREATE TABLE Players
   TeamId INT NOT NULL,
   CountryId INT NOT NULL,
   MonthlyWage MONEY,
-  PreviousTeadmId INT NOT NULL,
+  PreviousTeadmId INT,
   CONSTRAINT FK_Player_Team FOREIGN KEY (TeamId) REFERENCES Teams (Id),
   CONSTRAINT CHK_Position CHECK (Position = 'GK' OR Position = 'DF' OR Position = 'MF' OR Position = 'FW'),
   CONSTRAINT FK_Player_Country FOREIGN KEY (CountryId) REFERENCES Countries(Id),

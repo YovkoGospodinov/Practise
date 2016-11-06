@@ -14,6 +14,11 @@
                 url: "/api/Players",
                 type: "DELETE",
                 dataType: "json"
+            },
+            create: {
+                url: "/api/Players",
+                type: "Post",
+                dataType: "json"
             }
         },
         pageSize: 5,
@@ -21,12 +26,16 @@
             model: {
                 id: "Id",
                 fields: {
-                    Id: { editable: false, nullable: false },
+                    Id: { editable: false, nullable: true },
                     Name: { validation: { required: true } },
                     Position: { validation: { required: true } },
-                    Team1: { defaultValue: { Team1: 1, CategoryName: "Arsenal F.C." } },
-                    Country: { defaultValue: { CountryId: 1, CategoryName: "England" } },
-                    BirthDate :{ type: "date"}
+                    Team1: { validation: { required: true } },
+                    Team1Id: { validation: { required: true } },
+                    Country: { validation: { required: true } },
+                    CountryId: { validation: { required: true } },
+                    BirthDate: { type: "date" },
+                    MonthlyWage: { editable: true, nullable: true },
+                    PreviousTeadmId: { editable: true, nullable: true }
                 }
             }
         }

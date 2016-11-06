@@ -13,9 +13,10 @@ namespace FootballWebApp.Controllers
     {
         public TeamsController()
             : base() { }
+
         public IList<Team> Get()
         {
-            var teams = base.entities.Teams.Include("Country").Include("League").ToList();
+            var teams = base.entities.Teams.Include("Country").Include("League").Include("City").ToList();
             return teams;
         }
 
@@ -32,7 +33,15 @@ namespace FootballWebApp.Controllers
                 }
                 else
                 {
-                    base.entities.Teams.Add(team);
+                    var teamToBeAdded = new Team()
+                    {
+                        Name = team.Name,
+                        NickName = team.NickName,
+                        LeagueId = team.LeagueId,
+                        CountryId = team.CountryId,
+                        CityId = team.CityId
+                    };
+                    base.entities.Teams.Add(teamToBeAdded);
                 }
 
                 base.entities.SaveChanges();

@@ -34,7 +34,18 @@ namespace FootballWebApp.Controllers
                 }
                 else
                 {
-                    base.entities.Players.Add(player);
+                    var playerToBeAdded = new Player()
+                    {
+                        Name = player.Name,
+                        Position = player.Position,
+                        BirthDate = player.BirthDate,
+                        PreviousTeadmId = player.TeamId,
+                        CountryId = player.CountryId,
+                        PreviousTeadmId = null,
+                        MonthlyWage = null
+                    };
+
+                    base.entities.Players.Add(playerToBeAdded);
                 }
 
                 base.entities.SaveChanges();
