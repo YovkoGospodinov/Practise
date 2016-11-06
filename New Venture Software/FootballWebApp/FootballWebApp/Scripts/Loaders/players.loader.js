@@ -14,14 +14,12 @@
             field: "Position",
             title: "Position",
             width: "110px"
-        },
-        //{
-        //    field: "TeamId",
-        //    values: teamsData,
-        //    editor: teamsDropDownEditor, template: "#=Team.Name#",
-        //    title: "Current Team"
-        //}, 
-        {
+        }, {
+            field: "Team1",
+            values: teamsData,
+            editor: teamsDropDownEditor, template: "#=Team1.Name#",
+            title: "Current Team"
+        }, {
             field: "CountryId",
             values: dataCountries,
             editor: countriesDropDownEditor, template: "#=Country.Name#",
