@@ -234,7 +234,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CoachesController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaguesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -288,8 +290,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\coaches.loader.js" />
-    <Content Include="Scripts\grid.loader.js" />
+    <Content Include="Scripts\Loaders\coaches.loader.js" />
+    <Content Include="Scripts\Grids\general.grid.loader.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -301,11 +303,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\kendo.web.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\pager.loader.js" />
-    <Content Include="Scripts\players.loader.js" />
+    <Content Include="Scripts\Loaders\pager.loader.js" />
+    <Content Include="Scripts\Loaders\players.loader.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\teams.loader.js" />
+    <Content Include="Scripts\Grids\coaches.grid.loader.js" />
+    <Content Include="Scripts\Grids\teams.grid.loader.js" />
+    <Content Include="Scripts\Loaders\teams.loader.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

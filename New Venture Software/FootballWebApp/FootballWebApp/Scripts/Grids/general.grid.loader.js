@@ -4,16 +4,6 @@
                 read: {
                     url: url,
                     dataType: "json"
-                },
-                update: {
-                    url: url,
-                    type: "Post",
-                    dataType: "json"
-                }, 
-                destroy: {
-                    url: url,
-                    type: "DELETE",
-                    dataType: "json"
                 }
             },
             pageSize: 5,

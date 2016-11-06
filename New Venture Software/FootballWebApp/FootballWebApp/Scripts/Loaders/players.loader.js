@@ -13,15 +13,14 @@
             title: "Position",
             width: "110px"
         }, {
-            field: "Team1.Name",
+            field: "TeamId",
             title: "Current Team"
         }, {
-            field: "Country.Name",
+            field: "CountryId",
             title: "Birth Country"
         }, {
             field: "BirthDate",
             title: "Birth Date",
-            template: "#= kendo.toString(kendo.parseDate(BirthDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #"
         }, {
             command: ["edit", "destroy"], title: "Action", width: "172px"
         }],
