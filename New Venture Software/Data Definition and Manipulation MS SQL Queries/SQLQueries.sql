@@ -54,11 +54,9 @@ CREATE TABLE Players
   TeamId INT NOT NULL,
   CountryId INT NOT NULL,
   MonthlyWage MONEY,
-  PreviousTeadmId INT,
   CONSTRAINT FK_Player_Team FOREIGN KEY (TeamId) REFERENCES Teams (Id),
   CONSTRAINT CHK_Position CHECK (Position = 'GK' OR Position = 'DF' OR Position = 'MF' OR Position = 'FW'),
-  CONSTRAINT FK_Player_Country FOREIGN KEY (CountryId) REFERENCES Countries(Id),
-  CONSTRAINT FK_Player_PreviousTeam FOREIGN KEY (PreviousTeadmId) REFERENCES Teams (Id)
+  CONSTRAINT FK_Player_Country FOREIGN KEY (CountryId) REFERENCES Countries(Id)
  )
 
 --Data Manipulation (Insertion of data entries)
@@ -123,16 +121,16 @@ INSERT INTO Coaches (Name, TeamId)
 	('Jurgen Klopp', 6),
 	('Hristo Yanev', 14)
 
-INSERT INTO Players (Name, BirthDate, Position, TeamId, CountryId, MonthlyWage, PreviousTeadmId)
+INSERT INTO Players (Name, BirthDate, Position, TeamId, CountryId, MonthlyWage)
 	VALUES
-	('Yanko Georgiev', '1988-10-22', 'GK', 18, 3, 10125, 17),
-	('Mariyan Ognyanov', '1988-10-30','MF', 18, 3, 30500, 16),
-	('Theo Walcott', '1989-03-16', 'MF', 1, 1, 76000, 8),
-	('Alex Oxlade-Chamberlain', '1993-08-15', 'MF', 1, 1, 54000, 9),
-	('David Silva', '1986-01-08', 'MF', 4, 2, 145000, 12),
-	('Raheem Sterling', '1994-12-08', 'FW', 4, 1, 98000, 6),
-	('Juan Mata', '1988-04-28', 'MF', 5, 2, 79000, 7),
-	('David de Gea', '1990-11-07', 'GK', 5, 2, 67800, 13)
+	('Yanko Georgiev', '1988-10-22', 'GK', 18, 3, 10125),
+	('Mariyan Ognyanov', '1988-10-30','MF', 18, 3, 30500),
+	('Theo Walcott', '1989-03-16', 'MF', 1, 1, 76000),
+	('Alex Oxlade-Chamberlain', '1993-08-15', 'MF', 1, 1, 54000),
+	('David Silva', '1986-01-08', 'MF', 4, 2, 145000),
+	('Raheem Sterling', '1994-12-08', 'FW', 4, 1, 98000),
+	('Juan Mata', '1988-04-28', 'MF', 5, 2, 79000),
+	('David de Gea', '1990-11-07', 'GK', 5, 2, 67800)
 
 
 

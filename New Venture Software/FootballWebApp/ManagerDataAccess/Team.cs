@@ -19,7 +19,6 @@ namespace ManagerDataAccess
         {
             this.Coaches = new HashSet<Coach>();
             this.Players = new HashSet<Player>();
-            this.Players1 = new HashSet<Player>();
         }
     
         public int Id { get; set; }
@@ -36,7 +35,5 @@ namespace ManagerDataAccess
         public virtual League League { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Player> Players { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Player> Players1 { get; set; }
     }
 }

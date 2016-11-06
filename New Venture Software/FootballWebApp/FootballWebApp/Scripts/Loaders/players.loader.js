@@ -15,10 +15,10 @@
             title: "Position",
             width: "110px"
         }, {
-            field: "Team1",
+            field: "TeamId",
             values: teamsData,
-            editor: teamsDropDownEditor, template: "#=Team1.Name#",
-            title: "Current Team"
+            editor: teamsDropDownEditor, template: "#=Team.Name#",
+            title: "Team"
         }, {
             field: "CountryId",
             values: dataCountries,

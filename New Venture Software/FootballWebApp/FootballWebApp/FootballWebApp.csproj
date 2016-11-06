@@ -342,7 +342,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ManagerDataAccess\ManagerDataAccess.csproj">
-      <Project>{f4104166-9c66-4877-870a-22b19207641b}</Project>
+      <Project>{cde4b5d3-74e1-42ea-91ef-de75df3f04f4}</Project>
       <Name>ManagerDataAccess</Name>
     </ProjectReference>
   </ItemGroup>

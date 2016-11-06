@@ -15,10 +15,10 @@ namespace ManagerDataAccess
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class FootBall_ManagerEntities : DbContext
+    public partial class FootBallManagerEntities : DbContext
     {
-        public FootBall_ManagerEntities()
-            : base("name=FootBall_ManagerEntities")
+        public FootBallManagerEntities()
+            : base("name=FootBallManagerEntities")
         {
         }
     

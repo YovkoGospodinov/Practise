@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,7 +48,6 @@
           <Property Name="TeamId" Type="int" Nullable="false" />
           <Property Name="CountryId" Type="int" Nullable="false" />
           <Property Name="MonthlyWage" Type="money" />
-          <Property Name="PreviousTeadmId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -116,18 +115,6 @@
             </Principal>
             <Dependent Role="Players">
               <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Player_PreviousTeam">
-          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
-          <End Role="Players" Type="Self.Players" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teams">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Players">
-              <PropertyRef Name="PreviousTeadmId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,7 +197,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coaches" EntityType="Self.Coaches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
@@ -234,10 +221,6 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Players" EntitySet="Players" />
           </AssociationSet>
-          <AssociationSet Name="FK_Player_PreviousTeam" Association="Self.FK_Player_PreviousTeam">
-            <End Role="Teams" EntitySet="Teams" />
-            <End Role="Players" EntitySet="Players" />
-          </AssociationSet>
           <AssociationSet Name="FK_Player_Team" Association="Self.FK_Player_Team">
             <End Role="Teams" EntitySet="Teams" />
             <End Role="Players" EntitySet="Players" />
@@ -259,7 +242,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -312,10 +295,8 @@
           <Property Name="TeamId" Type="Int32" Nullable="false" />
           <Property Name="CountryId" Type="Int32" Nullable="false" />
           <Property Name="MonthlyWage" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="PreviousTeadmId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Player_Country" FromRole="Players" ToRole="Countries" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Player_PreviousTeam" FromRole="Players" ToRole="Teams" />
-          <NavigationProperty Name="Team1" Relationship="Self.FK_Player_Team" FromRole="Players" ToRole="Teams" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Player_Team" FromRole="Players" ToRole="Teams" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -341,8 +322,7 @@
           <NavigationProperty Name="Coaches" Relationship="Self.FK_Coach_Team" FromRole="Teams" ToRole="Coaches" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Team_Country" FromRole="Teams" ToRole="Countries" />
           <NavigationProperty Name="League" Relationship="Self.FK_Team_League" FromRole="Teams" ToRole="Leagues" />
-          <NavigationProperty Name="Players" Relationship="Self.FK_Player_PreviousTeam" FromRole="Teams" ToRole="Players" />
-          <NavigationProperty Name="Players1" Relationship="Self.FK_Player_Team" FromRole="Teams" ToRole="Players" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Team" FromRole="Teams" ToRole="Players" />
         </EntityType>
         <Association Name="FK_City_Country">
           <End Role="Countries" Type="Self.Country" Multiplicity="1" />
@@ -428,18 +408,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Player_PreviousTeam">
-          <End Role="Teams" Type="Self.Team" Multiplicity="1" />
-          <End Role="Players" Type="Self.Player" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teams">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Players">
-              <PropertyRef Name="PreviousTeadmId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Player_Team">
           <End Role="Teams" Type="Self.Team" Multiplicity="1" />
           <End Role="Players" Type="Self.Player" Multiplicity="*" />
@@ -452,7 +420,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FootBall_ManagerEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FootBallManagerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Coaches" EntityType="Self.Coach" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
@@ -488,10 +456,6 @@
             <End Role="Leagues" EntitySet="Leagues" />
             <End Role="Teams" EntitySet="Teams" />
           </AssociationSet>
-          <AssociationSet Name="FK_Player_PreviousTeam" Association="Self.FK_Player_PreviousTeam">
-            <End Role="Teams" EntitySet="Teams" />
-            <End Role="Players" EntitySet="Players" />
-          </AssociationSet>
           <AssociationSet Name="FK_Player_Team" Association="Self.FK_Player_Team">
             <End Role="Teams" EntitySet="Teams" />
             <End Role="Players" EntitySet="Players" />
@@ -512,11 +476,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Models.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Models.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -543,9 +507,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="FootBall_ManagerEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="FootBallManagerEntities">
           <EntitySetMapping Name="Cities">
-            <EntityTypeMapping TypeName="Model.City">
+            <EntityTypeMapping TypeName="Models.City">
               <MappingFragment StoreEntitySet="Cities">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -554,7 +518,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Coaches">
-            <EntityTypeMapping TypeName="Model.Coach">
+            <EntityTypeMapping TypeName="Models.Coach">
               <MappingFragment StoreEntitySet="Coaches">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -563,7 +527,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="Model.Country">
+            <EntityTypeMapping TypeName="Models.Country">
               <MappingFragment StoreEntitySet="Countries">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -571,7 +535,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Leagues">
-            <EntityTypeMapping TypeName="Model.League">
+            <EntityTypeMapping TypeName="Models.League">
               <MappingFragment StoreEntitySet="Leagues">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -581,7 +545,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Players">
-            <EntityTypeMapping TypeName="Model.Player">
+            <EntityTypeMapping TypeName="Models.Player">
               <MappingFragment StoreEntitySet="Players">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -590,12 +554,11 @@
                 <ScalarProperty Name="TeamId" ColumnName="TeamId" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="MonthlyWage" ColumnName="MonthlyWage" />
-                <ScalarProperty Name="PreviousTeadmId" ColumnName="PreviousTeadmId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagram">
+            <EntityTypeMapping TypeName="Models.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -606,7 +569,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Teams">
-            <EntityTypeMapping TypeName="Model.Team">
+            <EntityTypeMapping TypeName="Models.Team">
               <MappingFragment StoreEntitySet="Teams">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -617,20 +580,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Model.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Models.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Models.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Models.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Models.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="Models.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Model.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Models.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="Models.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -639,8 +602,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Models.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Models.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

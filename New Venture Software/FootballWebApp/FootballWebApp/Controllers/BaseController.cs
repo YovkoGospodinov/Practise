@@ -5,7 +5,7 @@ namespace FootballWebApp.Controllers
 {
     public abstract class BaseController : ApiController
     {
-        protected FootBall_ManagerEntities entities = new FootBall_ManagerEntities();
+        protected FootBallManagerEntities entities = new FootBallManagerEntities();
 
         protected BaseController()
         {

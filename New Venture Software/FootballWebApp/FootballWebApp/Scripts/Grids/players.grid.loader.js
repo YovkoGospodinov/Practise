@@ -29,13 +29,12 @@
                     Id: { editable: false, nullable: true },
                     Name: { validation: { required: true } },
                     Position: { validation: { required: true } },
-                    Team1: { validation: { required: true } },
-                    Team1Id: { validation: { required: true } },
+                    Team: { validation: { required: true } },
+                    TeamId: { validation: { required: true } },
                     Country: { validation: { required: true } },
                     CountryId: { validation: { required: true } },
                     BirthDate: { type: "date" },
-                    MonthlyWage: { editable: true, nullable: true },
-                    PreviousTeadmId: { editable: true, nullable: true }
+                    MonthlyWage: { editable: true, nullable: true }
                 }
             }
         }

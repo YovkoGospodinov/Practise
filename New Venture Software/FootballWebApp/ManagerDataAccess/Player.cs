@@ -21,10 +21,8 @@ namespace ManagerDataAccess
         public int TeamId { get; set; }
         public int CountryId { get; set; }
         public Nullable<decimal> MonthlyWage { get; set; }
-        public int PreviousTeadmId { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Team Team { get; set; }
-        public virtual Team Team1 { get; set; }
     }
 }
