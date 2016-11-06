@@ -20,11 +20,6 @@
             editor: teamsDropDownEditor, template: "#=Team1.Name#",
             title: "Current Team"
         }, {
-            field: "Team",
-            values: teamsData,
-            editor: teamsDropDownEditor, template: "#=Team.Name#",
-            title: "Previous Team"
-        }, {
             field: "CountryId",
             values: dataCountries,
             editor: countriesDropDownEditor, template: "#=Country.Name#",

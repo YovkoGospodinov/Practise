@@ -34,7 +34,13 @@ namespace FootballWebApp.Controllers
                 }
                 else
                 {
-                    base.entities.Coaches.Add(coach);
+                    var coachToBeAdded = new Coach()
+                    {
+                        Name = coach.Name,
+                        TeamId = coach.TeamId
+                    };
+
+                    base.entities.Coaches.Add(coachToBeAdded);
                 }
 
                 base.entities.SaveChanges();
@@ -58,7 +64,7 @@ namespace FootballWebApp.Controllers
                 var coachId = coach.Id;
                 var coachToRemove = base.entities.Coaches.FirstOrDefault(c => c.Id == coachId);
 
-                if (coachToRemove == null)
+                if (coachToRemove != null)
                 {
                     base.entities.Coaches.Remove(coachToRemove);
 
