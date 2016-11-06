@@ -15,6 +15,7 @@
             command: ["edit", "destroy"], title: "Action", width: "172px"
         }],
         sortable: true,
+        selectable: true,
         filterable: true,
         scrollable: true,
         editable: "inline",

@@ -13,24 +13,10 @@ namespace FootballWebApp.Controllers
     {
         public TeamsController()
             : base() { }
-        public IList<Team> GetAll()
+        public IList<Team> Get()
         {
             var teams = base.entities.Teams.Include("Country").Include("League").ToList();
             return teams;
-        }
-
-        public HttpResponseMessage Get(int id)
-        {
-            var team = base.entities.Teams.FirstOrDefault(t => t.Id == id);
-
-            if (team != null)
-            {
-               return  Request.CreateResponse(HttpStatusCode.OK, team);
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Team with the passed Id does not exist in the database!");
-            }
         }
 
         public HttpResponseMessage Post([FromBody]Team team)
@@ -62,17 +48,15 @@ namespace FootballWebApp.Controllers
             }
         }
 
-        public HttpResponseMessage Delete(int id)
+        [HttpDelete]
+        public HttpResponseMessage Delete([FromBody]Team team)
         {
             try
             {
-                var teamToRemove = base.entities.Teams.FirstOrDefault(t => t.Id == id);
+                var teamId = team.Id;
+                var teamToRemove = base.entities.Teams.FirstOrDefault(t => t.Id == teamId);
 
-                if (teamToRemove == null)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Team with the passed {id} does not exist in the database!");
-                }
-                else
+                if (teamToRemove != null)
                 {
                     base.entities.Teams.Remove(teamToRemove);
 
@@ -80,34 +64,9 @@ namespace FootballWebApp.Controllers
 
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-        }
-
-        public HttpResponseMessage Put(int id, [FromBody] Team team)
-        {
-            try
-            {
-                var teamToUpdate = base.entities.Teams.FirstOrDefault(t => t.Id == id);
-
-                if (teamToUpdate == null)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Team with the passed {id} does not exist in the database!");
-                }
                 else
                 {
-                    teamToUpdate.Name = team.Name;
-                    teamToUpdate.NickName = team.NickName;
-                    teamToUpdate.CountryId = team.CountryId;
-                    teamToUpdate.LeagueId = team.LeagueId;
-                    teamToUpdate.CityId = team.CityId;
-
-                    base.entities.SaveChanges();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, teamToUpdate);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Team with the passed {teamId} does not exist in the database!");
                 }
             }
             catch (Exception ex)

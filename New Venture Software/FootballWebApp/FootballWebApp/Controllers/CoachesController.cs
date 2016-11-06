@@ -14,25 +14,11 @@ namespace FootballWebApp.Controllers
         public CoachesController() 
             : base() { }
 
-        public IList<Coach> GetAll()
+        public IList<Coach> Get()
         {
             var coaches = base.entities.Coaches.Include("Team").ToList();
 
             return coaches;
-        }
-
-        public HttpResponseMessage Get(int id)
-        {
-            var coach = base.entities.Coaches.FirstOrDefault(c => c.Id == id);
-
-            if (coach != null)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, coach);
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Coach with the passed Id - {id} does not exist in the database!");
-            }
         }
 
         public HttpResponseMessage Post([FromBody]Coach coach)
@@ -64,17 +50,15 @@ namespace FootballWebApp.Controllers
             }
         }
 
-        public HttpResponseMessage Delete(int id)
+        [HttpDelete]
+        public HttpResponseMessage Delete([FromBody]Coach coach)
         {
             try
             {
-                var coachToRemove = base.entities.Coaches.FirstOrDefault(c => c.Id == id);
+                var coachId = coach.Id;
+                var coachToRemove = base.entities.Coaches.FirstOrDefault(c => c.Id == coachId);
 
                 if (coachToRemove == null)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Coach with the passed {id} does not exist in the database!");
-                }
-                else
                 {
                     base.entities.Coaches.Remove(coachToRemove);
 
@@ -82,30 +66,9 @@ namespace FootballWebApp.Controllers
 
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-        }
-
-        public HttpResponseMessage Put(int id, [FromBody] Coach coach)
-        {
-            try
-            {
-                var coachToUpdate = entities.Coaches.FirstOrDefault(c => c.Id == id);
-
-                if (coachToUpdate == null)
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Coach with the passed {id} does not exist in the database!");
-                }
                 else
                 {
-                    coachToUpdate.Name = coach.Name;
-
-                    base.entities.SaveChanges();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, coachToUpdate);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Coach with the passed {coachId} does not exist in the database!");
                 }
             }
             catch (Exception ex)

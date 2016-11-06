@@ -11,26 +11,22 @@
         }, {
             field: "Position",
             title: "Position",
-            width: "95px"
+            width: "110px"
         }, {
             field: "Team1.Name",
-            title: "Current Team",
-        }, {
-            field: "Team.Name",
-            title: "Previous Team",
+            title: "Current Team"
         }, {
             field: "Country.Name",
-            title: "Birth Country",
-            width: "130px"
+            title: "Birth Country"
         }, {
             field: "BirthDate",
             title: "Birth Date",
-            template: "#= kendo.toString(kendo.parseDate(BirthDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #",
-            width: "120px"
+            template: "#= kendo.toString(kendo.parseDate(BirthDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #"
         }, {
             command: ["edit", "destroy"], title: "Action", width: "172px"
         }],
         sortable: true,
+        selectable: true,
         filterable: true,
         scrollable: true,
         editable: "inline",
