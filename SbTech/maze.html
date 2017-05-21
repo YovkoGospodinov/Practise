@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1 id="title">Maze</h1>
+
+    <p>Entry Point</p>
+    <label for="pointI">I:</label>
+    <input id="pointI" type="number" value="0" min="0" max="15">
+    <label for="pointJ">J:</label>
+    <input id="pointJ" type="number" value="0" min="0" max="8">
+    <button id="entry" type="text">Set entry point!</button>
+
+    <button id="result" type="text">Find my why to the exit!</button>
+
+    <label for="directions">Directions</label>
+    <table id="directions">
+        <tr>
+            <td>Forward: </td>
+            <td onload="this.forward;">
+
+            </td>
+        </tr>
+        <tr>
+            <td>Backword: </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Left: </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Right: </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div id="maze"></div>
+    <script src=script.js></script>
+</body>
+
+</html>
