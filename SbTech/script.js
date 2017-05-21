@@ -84,10 +84,16 @@ function checkMobility() {
         backward = true;
     }
 
-    document.getElementById("forward").innerHTML += forward;
-    document.getElementById("backward").innerHTML += backward;
-    document.getElementById("left").innerHTML += left;
-    document.getElementById("right").innerHTML += right;
+    document.getElementById("forward").innerHTML = forward;
+    document.getElementById("forward").className = forward;
+    document.getElementById("backward").innerHTML = backward;
+    document.getElementById("backward").className = backward;
+    document.getElementById("left").innerHTML = left;
+    document.getElementById("left").className = left;
+    document.getElementById("right").innerHTML = right;
+    document.getElementById("right").className = right;
+
+
 }
 
 function mazeSolver() {
